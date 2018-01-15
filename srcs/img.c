@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 12:45:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 17:21:51 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/15 13:30:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	check_fractal_name(char *fractal_name)
+t_img		*create_img(void *img)
 {
-	if (ft_strcmp(fractal_name, "julia") != 0 &&
-		ft_strcmp(fractal_name, "mandelbrot") != 0)
-		arg_error();
-}
+	t_img *s_img;
 
-int		main(int ac, char **av)
-{
-	t_fractol	*fract;
-
-	if (ac != 2)
-		arg_error();
-	check_fractal_name(av[1]);
-	fract = create_fractol();
-	create_window(av[1], fract);
-	return (0);
+	if (!(s_img = (t_img*)ft_memalloc(sizeof(t_img))))
+		malloc_error();
+	s_img->img_ptr = img;
+	s_img->data = (int *)mlx_get_data_addr(s_img->img_ptr, &s_img->bpp,
+			&s_img->size_line, &s_img->endian);
+	return (s_img);
 }

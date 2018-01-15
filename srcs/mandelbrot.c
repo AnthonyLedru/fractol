@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 12:45:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 17:21:51 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/15 18:33:57 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	check_fractal_name(char *fractal_name)
+void	mandelbrot(t_fractol *fract)
 {
-	if (ft_strcmp(fractal_name, "julia") != 0 &&
-		ft_strcmp(fractal_name, "mandelbrot") != 0)
-		arg_error();
-}
+	double	x1 = -2.1;
+	double	x2 = 0.6;
+	double	y1 = -1.2;
+	double	y2 = 1.2;
+	int		i_max = 50;
 
-int		main(int ac, char **av)
-{
-	t_fractol	*fract;
+	double zoom_x = WIN_HEIGHT / (x2 - x1);
+	double zoom_y = WIN_WIDTH / (y2 - y1);
 
-	if (ac != 2)
-		arg_error();
-	check_fractal_name(av[1]);
-	fract = create_fractol();
-	create_window(av[1], fract);
-	return (0);
+	int y;
+	int i;
+	while (i < image_x)
+	{
+		while (y < image_y)
+		{
+			y++;
+		}
+		i = 0;
+		i++;
+	}
 }

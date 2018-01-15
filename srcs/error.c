@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 12:45:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 17:21:51 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/15 13:03:19 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/15 14:56:15 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	check_fractal_name(char *fractal_name)
+void	malloc_error(void)
 {
-	if (ft_strcmp(fractal_name, "julia") != 0 &&
-		ft_strcmp(fractal_name, "mandelbrot") != 0)
-		arg_error();
+	ft_putstr_fd("error: Malloc failed\n", 2);
+	exit(EXIT_FAILURE);
 }
 
-int		main(int ac, char **av)
+void	arg_error(void)
 {
-	t_fractol	*fract;
-
-	if (ac != 2)
-		arg_error();
-	check_fractal_name(av[1]);
-	fract = create_fractol();
-	create_window(av[1], fract);
-	return (0);
+	ft_putstr_fd("Usage: <name> [mandelbot/julia/other]\n", 2);
+	exit(EXIT_FAILURE);
 }

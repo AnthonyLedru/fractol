@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 12:45:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 17:21:51 by aledru           ###   ########.fr       */
+/*   Created: 2017/12/15 13:18:49 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/15 17:19:37 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	check_fractal_name(char *fractal_name)
+int	mlx_key(int keycode, void *param)
 {
-	if (ft_strcmp(fractal_name, "julia") != 0 &&
-		ft_strcmp(fractal_name, "mandelbrot") != 0)
-		arg_error();
+	(void)param;
+	if (keycode == 53)
+		exit(EXIT_SUCCESS);
+	return (0);
 }
 
-int		main(int ac, char **av)
+int	mlx_key_pressed(int keycode, void *param)
 {
-	t_fractol	*fract;
+	(void)keycode;
+	(void)param;
+	return (0);
+}
 
-	if (ac != 2)
-		arg_error();
-	check_fractal_name(av[1]);
-	fract = create_fractol();
-	create_window(av[1], fract);
+int	mlx_zoom(int button, int x, int y, void *param)
+{
+	(void)button;
+	(void)y;
+	(void)x;
+	(void)param;
 	return (0);
 }

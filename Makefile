@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := fdf
+NAME := fractol
 
-INCLUDE_FOLDERS := -I includes/
+INCLUDE_FOLDERS := -I includes/ -I libft/includes/ -Iminilibx_macos/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 
@@ -21,21 +21,13 @@ vpath %.c srcs
 FLAGS := -Wall -Wextra -Werror
 MLX	   := -lmlx -framework OpenGL -framework AppKit
 SOURCES := \
-		line.c \
-		segment.c \
-		fdf.c \
-		point.c \
-		points.c \
-		img.c \
 		main.c \
-		parser.c \
-		mlx.c \
-		event.c \
-		draw.c \
-		color.c \
-		palette.c \
-		gradient.c \
 		error.c \
+		mlx.c \
+		fractol.c \
+		img.c \
+		event.c \
+
 
 OBJECTS := $(SOURCES:.c=.o)
 
@@ -51,19 +43,19 @@ all: header $(NAME)
 
 header:
 	@printf "\n$(HEAD_COLOR)--------------------------------\n"
-	@printf "$(HEAD_COLOR)------------- FDF --------------\n"
+	@printf "$(HEAD_COLOR)----------- Fractol ------------\n"
 	@printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"
 
 $(NAME): $(OBJECTS)
 	@make -C libft/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
-	-Lminilibx_macos/ minilibx_macos/libmlx.a
+	minilibx_macos/libmlx.a
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
 objs/%.o: %.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -Iminilibx_macos/ -c $< -o $@
+	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 
