@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/01/08 21:34:47 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/01/17 21:55:47 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 
 FLAGS := -Wall -Wextra -Werror
-MLX	   := -lmlx -framework OpenGL -framework AppKit
+MLX	   := -framework OpenGL -framework AppKit
 SOURCES := \
 		main.c \
 		error.c \
@@ -53,6 +53,7 @@ header:
 
 $(NAME): $(OBJECTS)
 	@make -C libft/
+	@make -C minilibx_macos/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
 	minilibx_macos/libmlx.a
@@ -70,6 +71,7 @@ clean:
 
 fclean: clean
 	@make -C libft/ fclean
+	@make -C minilibx_macos clean
 	@rm -f $(NAME)
 	@printf "$(SILENT_COLOR)$(NAME) : Binary removed $(NO_COLOR)\n"
 
