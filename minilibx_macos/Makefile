@@ -25,8 +25,12 @@ $(NOM):	$(OBJ)
 	@ranlib $(NOM)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n\n\n"
 
-objs/%.o: %.c
-	@mkdir -p $(dir $@)
+%.o: %.c
+	@gcc $(CFLAGS) -c $< -o $@
+	@printf "$(notdir $<) "
+	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
+
+%.o: %.m
 	@gcc $(CFLAGS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
