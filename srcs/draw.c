@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:22:57 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/17 15:25:59 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/17 13:17:50 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/17 17:05:39 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractol		*create_fractol(void)
+void	draw_pixel(int x, int y, t_fractol *fract, int i)
 {
-	t_fractol	*fractol;
+	t_color		*color;
 
-	if (!(fractol = (t_fractol*)ft_memalloc(sizeof(t_fractol))))
-		malloc_error();
-	fractol->iteration = 200;
-	return (fractol);
+	color = create_color_rgb(0, 0, i*255/fract->iteration);
+	if (y * WIN_WIDTH + x <= WIN_WIDTH * WIN_HEIGHT && y * WIN_WIDTH + x >= 0)
+		fract->img->data[y * WIN_WIDTH + x] = color->decimal;
+	ft_memdel((void*)&color);
 }

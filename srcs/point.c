@@ -6,17 +6,28 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:19:25 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/10 13:10:16 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/17 15:47:49 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 
 t_point			*create_point(int x, int y)
 {
 	t_point	*point;
 
 	if (!(point = (t_point*)ft_memalloc(sizeof(t_point))))
+		malloc_error();
+	point->x = x;
+	point->y = y;
+	return (point);
+}
+
+t_point_double	*create_point_d(double x, double y)
+{
+	t_point_double	*point;
+
+	if (!(point = (t_point_double*)ft_memalloc(sizeof(t_point_double))))
 		malloc_error();
 	point->x = x;
 	point->y = y;

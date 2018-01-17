@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:22:57 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/17 15:25:59 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/17 14:22:17 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/17 15:51:09 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractol		*create_fractol(void)
+t_complex	*create_complex(double r, double i)
 {
-	t_fractol	*fractol;
+	t_complex	*complex;
 
-	if (!(fractol = (t_fractol*)ft_memalloc(sizeof(t_fractol))))
+	if (!(complex = (t_complex*)ft_memalloc(sizeof(t_complex))))
 		malloc_error();
-	fractol->iteration = 200;
-	return (fractol);
+	complex->r = r;
+	complex->i = i;
+	return (complex);
+}
+
+void		set_complex(t_complex *complex, double r, double i)
+{
+	complex->r = r;
+	complex->i = i;
 }

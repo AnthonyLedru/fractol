@@ -27,6 +27,11 @@ SOURCES := \
 		fractol.c \
 		img.c \
 		event.c \
+		draw.c \
+		mandelbrot.c \
+		point.c \
+		complex.c \
+		color.c \
 
 
 OBJECTS := $(SOURCES:.c=.o)

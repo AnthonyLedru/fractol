@@ -6,32 +6,49 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 18:33:57 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/17 17:08:29 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandelbrot(t_fractol *fract)
+static void		mandelbrot_calc(t_complex *z, t_complex *c, int *i)
 {
-	double	x1 = -2.1;
-	double	x2 = 0.6;
-	double	y1 = -1.2;
-	double	y2 = 1.2;
-	int		i_max = 50;
+	double tmp;
 
-	double zoom_x = WIN_HEIGHT / (x2 - x1);
-	double zoom_y = WIN_WIDTH / (y2 - y1);
+	tmp = z->r;
+	set_complex(z, z->r = z->r * z->r - z->i * z->i + c->r,
+				z->i = 2 * z->i * tmp + c->i);
+	(*i)++;
+}
 
-	int y;
-	int i;
-	while (i < image_x)
+void			mandelbrot_draw(t_fractol *fract)
+{
+	t_complex		*c;
+	t_complex		*z;
+	t_point			*p;
+	t_point_double	*zoom;
+	int				i;
+
+	zoom = create_point_d(WIN_WIDTH / (0.6 - -2.1), WIN_HEIGHT / (1.2 - -1.2));
+	p = create_point(0, 0);
+	c = create_complex(0.0, 0.0);
+	z = create_complex(0.0, 0.0);
+	while (++p->x < WIN_WIDTH)
 	{
-		while (y < image_y)
+		p->y = 0;
+		while (++p->y < WIN_HEIGHT)
 		{
-			y++;
+			i = 0;
+			set_complex(c, p->x / zoom->x + -2.1, p->y / zoom->y + -1.2);
+			set_complex(z, 0, 0);
+			mandelbrot_calc(z, c, &i);
+			while (z->r * z->r + z->i * z->i < 4 && i < fract->iteration)
+				mandelbrot_calc(z, c, &i);
+			if (i == fract->iteration)
+				draw_pixel(p->x, p->y, fract, 0);
+			else
+				draw_pixel(p->x, p->y, fract, i);
 		}
-		i = 0;
-		i++;
 	}
 }
