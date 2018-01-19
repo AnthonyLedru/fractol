@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/17 17:18:53 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/19 13:38:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 # define WIN_HEIGHT	600
 # define WIN_WIDTH	800
+# define KEY_PLUS	69
+# define KEY_MINUS	78
 
 /*
 ** --------------------------------- Struct ------------------------------------
@@ -32,6 +34,7 @@ typedef struct	s_fractol
 	void			*win;
 	struct s_img	*img;
 	int				iteration;
+	char			*fract_name;
 }				t_fractol;
 
 typedef struct	s_img
@@ -73,7 +76,7 @@ typedef struct	s_color
 ** -------------------------------- Fractol ------------------------------------
 */
 
-t_fractol		*create_fractol(void);
+t_fractol		*create_fractol(void *mlx, void *win, t_img *img);
 
 /*
 ** ------------------------------ Mandelbrot -----------------------------------
@@ -120,7 +123,8 @@ t_color			*create_color(int decimal);
 ** ---------------------------------- Mlx --------------------------------------
 */
 
-void			create_window(char *fractal_name, t_fractol *fract);
+void			create_window(char *fractal_name);
+void			display_image(t_fractol *fract);
 
 /*
 ** --------------------------------- Event -------------------------------------

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 13:03:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/15 14:56:15 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/19 12:41:50 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	malloc_error(void)
 
 void	arg_error(void)
 {
-	ft_putstr_fd("Usage: <name> [mandelbot/julia/other]\n", 2);
+	ft_putstr_fd("Usage: <name> [mandelbrot/julia/other]\n", 2);
 	exit(EXIT_FAILURE);
 }

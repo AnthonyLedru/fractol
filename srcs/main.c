@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 12:45:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/17 13:25:24 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/19 13:39:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,9 @@ void	check_fractal_name(char *fractal_name)
 
 int		main(int ac, char **av)
 {
-	t_fractol	*fract;
-
 	if (ac != 2)
 		arg_error();
 	check_fractal_name(av[1]);
-	fract = create_fractol();
-	create_window(av[1], fract);
+	create_window(av[1]);
 	return (0);
 }
