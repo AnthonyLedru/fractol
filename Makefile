@@ -32,6 +32,8 @@ SOURCES := \
 		point.c \
 		complex.c \
 		color.c \
+		mandelbrot_params.c \
+
 
 
 OBJECTS := $(SOURCES:.c=.o)

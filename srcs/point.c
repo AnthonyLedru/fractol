@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:19:25 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/17 15:47:49 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/19 15:50:21 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ t_point			*copy_point(t_point *point)
 }
 
 void			set_point(t_point *point, int x, int y)
+{
+	point->x = x;
+	point->y = y;
+}
+
+void			set_point_d(t_point_double *point, double x, double y)
 {
 	point->x = x;
 	point->y = y;
