@@ -27,12 +27,11 @@ SOURCES := \
 		fractol.c \
 		img.c \
 		event.c \
-		draw.c \
 		mandelbrot.c \
 		point.c \
 		complex.c \
 		color.c \
-		mandelbrot_params.c \
+		params.c \
 
 
 

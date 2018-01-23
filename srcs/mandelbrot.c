@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/19 19:03:09 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/23 18:02:58 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		mandelbrot_calc(t_complex *z, t_complex *c, int *i)
 {
-	double tmp;
+	double	tmp;
 
 	tmp = z->r;
 	set_complex(z, z->r * z->r - z->i * z->i + c->r,
@@ -22,41 +22,31 @@ static void		mandelbrot_calc(t_complex *z, t_complex *c, int *i)
 	(*i)++;
 }
 
-void			mandelbrot_draw(t_fractol *fract, t_complex *c, t_complex *z,
-		t_point *p)
+void			mandelbrot_draw(t_fractol *fract)
 {
-	int					i;
-	t_mandelbrot_params	*mdbrot;
+	int			i;
+	t_params	*params;
+	t_point		*p;
 
-	mdbrot = fract->mandelbrot;
+	p = create_point(0, 0);
+	params = fract->params;
 	while (++p->x < WIN_WIDTH)
 	{
 		p->y = 0;
 		while (++p->y < WIN_HEIGHT)
 		{
 			i = 0;
-			set_complex(c, p->x / fract->mandelbrot->zoom->x + mdbrot->p1->x,
-							p->y / fract->mandelbrot->zoom->y + mdbrot->p1->y);
-			set_complex(z, 0, 0);
-			mandelbrot_calc(z, c, &i);
-			while (z->r * z->r + z->i * z->i < 4 && i < fract->iteration)
-				mandelbrot_calc(z, c, &i);
-			if (i == fract->iteration)
-				draw_pixel(p->x, p->y, fract, 0);
+			set_complex(params->c, (p->x / params->zoom) + params->min->x,
+							(p->y / params->zoom) + params->min->y);
+			set_complex(params->z, 0, 0);
+			mandelbrot_calc(params->z, params->c, &i);
+			while (params->z->r * params->z->r + params->z->i * params->z->i < 4
+					&& i < fract->max_iteration)
+				mandelbrot_calc(params->z, params->c, &i);
+			if (i == fract->max_iteration)
+				put_pixel(p->x, p->y, fract, 0);
 			else
-				draw_pixel(p->x, p->y, fract, i);
+				put_pixel(p->x, p->y, fract, i);
 		}
 	}
-}
-
-void		mandelbrot_setup_draw(t_fractol *fract)
-{
-	t_complex		*c;
-	t_complex		*z;
-	t_point			*p;
-
-	c = create_complex(0.0, 0.0);
-	z = create_complex(0.0, 0.0);
-	p = create_point(0, 0);
-	mandelbrot_draw(fract, c, z, p);
 }

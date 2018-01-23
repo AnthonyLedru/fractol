@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/19 16:49:12 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/23 17:48:10 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@
 
 # define WIN_HEIGHT	600
 # define WIN_WIDTH	800
+
 # define KEY_PLUS	69
 # define KEY_MINUS	78
+# define KEY_ESCAPE	53
+# define KEY_LEFT	123
+# define KEY_UP		126
+# define KEY_RIGHT	124
+# define KEY_DOWN	125
+
 # define MOUSE_DOWN	5
 # define MOUSE_UP	4
 
@@ -65,21 +72,23 @@ typedef struct	s_color
 	int b;
 }				t_color;
 
-typedef	struct	s_mandelbrot_params
+typedef	struct	s_params
 {
-	struct s_point_double	*p1;
-	struct s_point_double	*p2;
-	struct s_point_double	*zoom;
-}				t_mandelbrot_params;
+	struct s_point_double	*min;
+	struct s_point_double	*max;
+	struct s_complex		*z;
+	struct s_complex		*c;
+	double					zoom;
+}				t_params;
 
 typedef struct	s_fractol
 {
 	void						*mlx;
 	void						*win;
 	struct s_img				*img;
-	int							iteration;
+	int							max_iteration;
 	char						*name;
-	struct s_mandelbrot_params	*mandelbrot;
+	struct s_params				*params;
 }				t_fractol;
 
 /*
@@ -93,14 +102,15 @@ t_fractol			*create_fractol(void *mlx, void *win, char *name,
 ** ------------------------------ Mandelbrot -----------------------------------
 */
 
-void				mandelbrot_setup_draw(t_fractol *fract);
+void				mandelbrot_draw(t_fractol *fract);
+void				draw_fractal(t_fractol *fract);
 
 /*
-** --------------------------- Mandelbrot Params -------------------------------
+** --------------------------- Params -------------------------------
 */
 
-t_mandelbrot_params	*create_mandelbrot_params(void);
-void				set_zoom(t_mandelbrot_params *mandelbrot);
+t_params			*create_params(void);
+void				set_zoom(t_params *params);
 
 /*
 ** -------------------------------- Point --------------------------------------
@@ -120,16 +130,12 @@ t_complex			*create_complex(double r, double i);
 void				set_complex(t_complex *complex, double r, double i);
 
 /*
-** --------------------------------- Draw --------------------------------------
-*/
-
-void				draw_pixel(int x, int y, t_fractol *fract, int i);
-
-/*
 ** ---------------------------------- Img --------------------------------------
 */
 
 t_img				*create_img(void *img);
+void				put_pixel(int x, int y, t_fractol *fract, int i);
+void				display_image(t_fractol *fract);
 
 /*
 ** --------------------------------- Color -------------------------------------
@@ -143,13 +149,11 @@ t_color				*create_color(int decimal);
 */
 
 void				create_window(char *fractal_name);
-void				display_image(t_fractol *fract);
 
 /*
 ** --------------------------------- Event -------------------------------------
 */
 
-int					mlx_key(int keycode, void *param);
 int					mlx_zoom(int button, int x, int y, void *param);
 int					mlx_key_pressed(int keycode, void *param);
 

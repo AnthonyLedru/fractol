@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   params.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 13:17:50 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/19 14:05:38 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/23 17:00:05 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/23 17:00:08 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	draw_pixel(int x, int y, t_fractol *fract, int i)
+t_params	*create_params(void)
 {
-	t_color		*color;
+	t_params *params;
 
-	color = create_color_rgb(0, 0, i * 255 / fract->iteration);
-	if (y * WIN_WIDTH + x <= WIN_WIDTH * WIN_HEIGHT && y * WIN_WIDTH + x >= 0)
-		fract->img->data[y * WIN_WIDTH + x] = color->decimal;
-	ft_memdel((void*)&color);
+	if (!(params = (t_params*)
+						ft_memalloc(sizeof(t_params))))
+		malloc_error();
+	params->min = create_point_d(-2.1, -1.2);
+	params->max = create_point_d(0.6, 1.2);
+	params->z = create_complex(0.0, 0.0);
+	params->c = create_complex(0.0, 0.0);
+	params->zoom = 250;
+	return (params);
 }
