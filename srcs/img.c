@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/23 18:13:26 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/23 18:18:30 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	put_pixel(int x, int y, t_fractol *fract, int i)
 
 	p = fract->params;
 	i = i - log(log(p->z->r * p->z->r + p->z->i * p->z->i)) / log(2);
-	i = (((3 * 256) - 1) * i) / fract->max_iteration;
-	//color = create_color_rgb(0, 0, i * 255 / fract->max_iteration);
+	i = (((3 * 256) - 1) * (int)i) / fract->max_iteration;
+//	color = create_color_rgb(0, 0, i * 255 / fract->max_iteration);
 	color = create_color(i);
 	if (y * WIN_WIDTH + x <= WIN_WIDTH * WIN_HEIGHT && y * WIN_WIDTH + x >= 0)
 		fract->img->data[y * WIN_WIDTH + x] = color->decimal;

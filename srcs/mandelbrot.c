@@ -6,25 +6,25 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/23 18:02:58 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/23 18:17:59 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		mandelbrot_calc(t_complex *z, t_complex *c, int *i)
+static void		mandelbrot_calc(t_complex *z, t_complex *c, double *i)
 {
 	double	tmp;
 
 	tmp = z->r;
 	set_complex(z, z->r * z->r - z->i * z->i + c->r,
 				2 * z->i * tmp + c->i);
-	(*i)++;
+	*i = *i + 1.0;
 }
 
 void			mandelbrot_draw(t_fractol *fract)
 {
-	int			i;
+	double		i;
 	t_params	*params;
 	t_point		*p;
 
