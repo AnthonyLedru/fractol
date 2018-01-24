@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/23 18:18:30 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/24 19:47:04 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ t_img	*create_img(void *img)
 	return (s_img);
 }
 
-void	put_pixel(int x, int y, t_fractol *fract, int i)
+void	put_pixel(int x, int y, t_fractol *fract, float i)
 {
 	t_color		*color;
 	t_params	*p;
 
 	p = fract->params;
-	i = i - log(log(p->z->r * p->z->r + p->z->i * p->z->i)) / log(2);
-	i = (((3 * 256) - 1) * (int)i) / fract->max_iteration;
-//	color = create_color_rgb(0, 0, i * 255 / fract->max_iteration);
-	color = create_color(i);
+	if (i != 0)
+	{
+		i = i - log(log(sqrt(p->z->r * p->z->r + p->z->i * p->z->i))) / log(2);
+		i = (767 * i) / fract->max_iteration;
+		color = create_color_rgb(i, i, i);
+	}
+	else
+		color = create_color(0);
 	if (y * WIN_WIDTH + x <= WIN_WIDTH * WIN_HEIGHT && y * WIN_WIDTH + x >= 0)
 		fract->img->data[y * WIN_WIDTH + x] = color->decimal;
 	ft_memdel((void*)&color);

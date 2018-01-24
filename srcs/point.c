@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 18:19:25 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/19 15:50:21 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/24 19:46:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_point			*create_point(int x, int y)
 	return (point);
 }
 
-t_point_double	*create_point_d(double x, double y)
+t_point_double	*create_point_d(float x, float y)
 {
 	t_point_double	*point;
 
@@ -51,7 +51,7 @@ void			set_point(t_point *point, int x, int y)
 	point->y = y;
 }
 
-void			set_point_d(t_point_double *point, double x, double y)
+void			set_point_d(t_point_double *point, float x, float y)
 {
 	point->x = x;
 	point->y = y;

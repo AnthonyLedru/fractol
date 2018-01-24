@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/23 18:17:59 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/24 17:57:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void			mandelbrot_draw(t_fractol *fract)
 							(p->y / params->zoom) + params->min->y);
 			set_complex(params->z, 0, 0);
 			mandelbrot_calc(params->z, params->c, &i);
-			while (params->z->r * params->z->r + params->z->i * params->z->i < 4
-					&& i < fract->max_iteration)
+			while (sqrt(params->z->r * params->z->r + params->z->i *
+							params->z->i) < 4 && i < fract->max_iteration)
 				mandelbrot_calc(params->z, params->c, &i);
 			if (i == fract->max_iteration)
 				put_pixel(p->x, p->y, fract, 0);

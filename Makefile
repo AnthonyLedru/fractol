@@ -18,8 +18,10 @@ OBJECTS_FOLDER  := objs/
 
 vpath %.c srcs
 
-FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra -Werror -Ofast
 MLX	   := -framework OpenGL -framework AppKit
+THREAD := -lpthread
+
 SOURCES := \
 		main.c \
 		error.c \
@@ -56,7 +58,7 @@ $(NAME): $(OBJECTS)
 	@make -C libft/
 	@make -C minilibx_macos/
 	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
-	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) \
+	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) $(THREAD) \
 	minilibx_macos/libmlx.a
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 

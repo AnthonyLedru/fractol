@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 13:18:49 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/23 18:01:14 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/24 19:15:48 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	change_iteration(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_PLUS)
-		fract->max_iteration += 10;
+		fract->max_iteration += 1;
 	if (keycode == KEY_MINUS)
 		if (fract->max_iteration > 10)
-			fract->max_iteration -= 10;
+			fract->max_iteration -= 1;
 	draw_fractal(fract);
 }
 
@@ -41,6 +41,8 @@ int		mlx_key_pressed(int keycode, void *param)
 	fract = (t_fractol*)param;
 	if (keycode == KEY_ESCAPE)
 		exit(EXIT_SUCCESS);
+	if(keycode == KEY_R)
+		reset_params(fract->params);
 	if (keycode == KEY_PLUS || keycode == KEY_MINUS)
 		change_iteration(keycode, fract);
 	if (keycode == KEY_UP || keycode == KEY_DOWN ||
@@ -59,15 +61,22 @@ int		mlx_zoom(int button, int x, int y, void *param)
 	fract = (t_fractol*)param;
 	params = fract->params;
 	tmp = create_point_d(0.0, 0.0);
-	if (button == MOUSE_DOWN || button == MOUSE_UP)
+	if (button == MOUSE_UP || (button == MOUSE_DOWN && params->zoom >= 250))
 	{
 		ft_bzero(fract->img->data, WIN_WIDTH * WIN_HEIGHT);
+		display_image(fract);
 		set_point_d(tmp, x / params->zoom + params->min->x,
 							y / params->zoom + params->min->y);
 		if (button == MOUSE_DOWN)
+		{
 			params->zoom *= 0.5;
+			mlx_key_pressed(KEY_MINUS, fract);
+		}
 		if (button == MOUSE_UP)
+		{
 			params->zoom *= 1.5;
+			mlx_key_pressed(KEY_PLUS, fract);
+		}
 		params->min->x = tmp->x - (WIN_WIDTH / params->zoom) / 2;
 		params->min->y = tmp->y - (WIN_HEIGHT / params->zoom) / 2;
 		draw_fractal(fract);
