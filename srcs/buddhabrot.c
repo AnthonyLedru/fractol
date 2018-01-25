@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   buddhabrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 17:18:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/25 14:00:54 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/25 18:12:12 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/25 18:16:52 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		julia_calc(t_complex *z, t_complex *c, double *i)
+static void		buddhabrot_calc(t_complex *z, t_complex *c, double *i)
 {
 	double	tmp;
 
@@ -22,7 +22,7 @@ static void		julia_calc(t_complex *z, t_complex *c, double *i)
 	*i = *i + 1.0;
 }
 
-void			julia_draw(t_fractol *fract)
+void			buddhabrot_draw(t_fractol *fract)
 {
 	double		i;
 	t_params	*params;

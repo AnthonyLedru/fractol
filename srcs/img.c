@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/24 19:47:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/25 18:05:07 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	put_pixel(int x, int y, t_fractol *fract, float i)
 	{
 		i = i - log(log(sqrt(p->z->r * p->z->r + p->z->i * p->z->i))) / log(2);
 		i = (767 * i) / fract->max_iteration;
-		color = create_color_rgb(i, i, i);
+		if (ft_strcmp(fract->name, "mandelbrot") == 0)
+			color = create_color_rgb(i, i, i);
+		if (ft_strcmp(fract->name, "julia") == 0)
+			color = create_color_rgb(0, i, 0);
 	}
 	else
 		color = create_color(0);
@@ -49,4 +52,13 @@ void	display_image(t_fractol *fract)
 	mlx_string_put(fract->mlx, fract->win, 10, 10, 0xFFFFFF, "Max iteration: ");
 	mlx_string_put(fract->mlx, fract->win, 160, 10, 0xFFFFFF,
 			ft_itoa(fract->max_iteration));
+	if (ft_strcmp(fract->name, "julia") == 0)
+	{
+		if (fract->params->mouse_disabled == 1)
+			mlx_string_put(fract->mlx, fract->win, 10, WIN_HEIGHT - 30,
+					0xFFFFFF, "Mouse move: OFF");
+		if (fract->params->mouse_disabled == 0)
+			mlx_string_put(fract->mlx, fract->win, 10, WIN_HEIGHT - 30,
+					0xFFFFFF, "Mouse move: ON");
+	}
 }

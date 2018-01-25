@@ -28,8 +28,10 @@ SOURCES := \
 		mlx.c \
 		fractol.c \
 		img.c \
-		event.c \
+		event_key.c \
+		event_mouse.c \
 		mandelbrot.c \
+		julia.c \
 		point.c \
 		complex.c \
 		color.c \
