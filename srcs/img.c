@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/25 18:05:07 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 00:06:15 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	put_pixel(int x, int y, t_fractol *fract, float i)
 		if (ft_strcmp(fract->name, "mandelbrot") == 0)
 			color = create_color_rgb(i, i, i);
 		if (ft_strcmp(fract->name, "julia") == 0)
-			color = create_color_rgb(0, i, 0);
+			color = create_color_rgb(0, i , 0);
 	}
 	else
 		color = create_color(0);

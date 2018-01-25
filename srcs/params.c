@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:00:05 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/25 18:20:57 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 00:09:00 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		set_params(t_params *params, t_fractol *fract)
 	if (ft_strcmp(fract->name, "julia") == 0)
 	{
 		params->min = create_point_d(-1.7, -1.2);
-		params->c = create_complex(0.0, 0.0);
+		params->c = create_complex(-0.882, 0.243);
 		params->zoom = 250;
 	}
 	if (ft_strcmp(fract->name, "buddhabrot") == 0)

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:38 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/25 18:09:44 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 00:07:08 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int		mlx_move(int x, int y, t_fractol *fract)
 	{
 		if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
 			return (0);
-		p->c->r = (double)x / (double)WIN_WIDTH;
-		p->c->i = (double)y / (double)WIN_HEIGHT;
+		p->c->r = (double)x * -0.002205;
+		p->c->i = (double)y * 0.00081;
 	}
 	draw_fractal(fract);
 	return (0);
