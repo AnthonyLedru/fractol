@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 15:31:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 22:19:19 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,27 @@ t_img	*create_img(void *img)
 	return (s_img);
 }
 
-void	put_pixel(int x, int y, t_fractol *fract, double i)
+void	put_pixel(int x, int y, t_fract_thread *f_t, double i)
 {
 	t_color		*color;
 	t_params	*p;
 
-	p = fract->t1->params;
+	p = f_t->thread->params;
 	if (i != 0)
 	{
 		i = i - log(log(sqrt(p->z->r * p->z->r + p->z->i * p->z->i))) / log(2);
-		i = (767 * i) / fract->max_iteration;
-		if (ft_strcmp(fract->name, "mandelbrot") == 0)
+		i = (767 * i) / f_t->fract->max_iteration;
+		if (ft_strcmp(f_t->fract->name, "mandelbrot") == 0)
 			color = create_color_rgb(i, i, i);
-		if (ft_strcmp(fract->name, "julia") == 0)
+		if (ft_strcmp(f_t->fract->name, "julia") == 0)
 			color = create_color_rgb(0, i, 0);
-		if (ft_strcmp(fract->name, "burningship") == 0)
+		if (ft_strcmp(f_t->fract->name, "burningship") == 0)
 			color = create_color_rgb(0, i, i);
 	}
 	else
 		color = create_color(0);
 	if (y * WIN_WIDTH + x <= WIN_WIDTH * WIN_HEIGHT && y * WIN_WIDTH + x >= 0)
-		fract->img->data[y * WIN_WIDTH + x] = color->decimal;
+		f_t->fract->img->data[y * WIN_WIDTH + x] = color->decimal;
 	ft_memdel((void*)&color);
 }
 

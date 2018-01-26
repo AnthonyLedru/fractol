@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 18:24:21 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 22:18:58 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,15 @@ typedef struct	s_color
 typedef struct	s_params
 {
 	struct s_complex		*z;
+	struct s_complex		*c;
 	t_point					*p;
+	double					i;
 }				t_params;
 
 typedef struct	s_thread_p
 {
 	pthread_t				th;
+	int						id;
 	struct	s_params		*params;
 }				t_thread_p;
 
@@ -98,15 +101,21 @@ typedef struct	s_fractol
 	char					*name;
 	int						mouse_disabled;
 	double					zoom;
-	struct s_complex		*c;
 	struct s_point_double	*min;
 	struct s_thread_p		*t1;
 	struct s_thread_p		*t2;
 	struct s_thread_p		*t3;
 	struct s_thread_p		*t4;
+	int						width;
+	int						height;
 }				t_fractol;
 
-
+typedef struct	s_fract_thread
+{
+	struct s_fractol		*fract;
+	struct s_thread_p		*thread;
+	int						start_x;
+}				t_fract_thread;
 /*
 ** -------------------------------- Fractol ------------------------------------
 */
@@ -116,23 +125,29 @@ void			draw_fractal(void *fract);
 void			reset_fractal(t_fractol *fract);
 
 /*
-** -------------------------------- Thread_p -----------------------------------
+** ------------------------------ Thread params --------------------------------
 */
 
-t_thread_p		*create_thread_p(void);
+t_thread_p		*create_thread_p(int id, t_fractol *fract);
 void			set_params_threads(t_fractol *fract);
+
+/*
+** ------------------------------ Fract thread ---------------------------------
+*/
+
+t_fract_thread	*create_fract_thread(t_thread_p *thread, t_fractol *fract);
 
 /*
 ** -------------------------------- Params -------------------------------------
 */
 
-t_params		*create_params(t_thread_p *thread);
+t_params		*create_params(t_thread_p *thread, t_fractol *fract);
 
 /*
 ** ------------------------------- Mandelbrot ----------------------------------
 */
 
-void			mandelbrot_draw(t_fractol *fract);
+void			mandelbrot_draw_setup(t_fractol *fract);
 
 /*
 ** --------------------------------- Julia -------------------------------------
@@ -168,7 +183,7 @@ void			set_complex(t_complex *complex, double r, double i);
 */
 
 t_img			*create_img(void *img);
-void			put_pixel(int x, int y, t_fractol *fract, double i);
+void			put_pixel(int x, int y, t_fract_thread *fract, double i);
 void			display_image(t_fractol *fract);
 
 /*

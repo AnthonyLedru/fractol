@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:38 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 15:51:37 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 22:01:52 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ int		mlx_zoom(int button, int x, int y, t_fractol *fract)
 
 int		mlx_move(int x, int y, t_fractol *fract)
 {
-	if (ft_strcmp(fract->name, "julia") == 0 && fract->mouse_disabled == 0)
+	(void)x;
+	(void)y;
+	/*if (ft_strcmp(fract->name, "julia") == 0 && fract->mouse_disabled == 0)
 	{
 		if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
 			return (0);
 		fract->c->r = (double)x * -0.002205;
 		fract->c->i = (double)y * 0.00081;
-	}
+	}*/
 	draw_fractal(fract);
 	return (0);
 }

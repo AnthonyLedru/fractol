@@ -38,6 +38,7 @@ SOURCES := \
 		color.c \
 		params.c \
 		thread.c \
+		fract_thread.c \
 
 
 

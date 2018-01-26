@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:18:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 18:48:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 22:02:26 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		julia_calc(t_complex *z, t_complex *c, double *i)
+/*static void		julia_calc(t_complex *z, t_complex *c, double *i)
 {
 	double	tmp;
 
@@ -20,11 +20,12 @@ static void		julia_calc(t_complex *z, t_complex *c, double *i)
 	set_complex(z, z->r * z->r - z->i * z->i + c->r,
 				2 * z->i * tmp + c->i);
 	*i = *i + 1.0;
-}
+}*/
 
 void			*julia_draw2(void *fracto)
 {
-	double		i;
+	(void)fracto;
+	/*double		i;
 	t_fractol	*fract;
 	t_params	*params;
 
@@ -47,7 +48,7 @@ void			*julia_draw2(void *fracto)
 			else
 				put_pixel(params->p->x, params->p->y, fract, i);
 		}
-	}
+	}*/
 	return (NULL);
 }
 
