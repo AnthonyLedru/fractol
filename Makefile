@@ -32,6 +32,7 @@ SOURCES := \
 		event_mouse.c \
 		mandelbrot.c \
 		julia.c \
+		burningship.c \
 		point.c \
 		complex.c \
 		color.c \

@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 00:06:15 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 13:16:22 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	put_pixel(int x, int y, t_fractol *fract, float i)
 			color = create_color_rgb(i, i, i);
 		if (ft_strcmp(fract->name, "julia") == 0)
 			color = create_color_rgb(0, i , 0);
+		if (ft_strcmp(fract->name, "burningship") == 0)
+			color = create_color_rgb(0, i , i);
 	}
 	else
 		color = create_color(0);
@@ -49,16 +51,20 @@ void	put_pixel(int x, int y, t_fractol *fract, float i)
 void	display_image(t_fractol *fract)
 {
 	mlx_put_image_to_window(fract->mlx, fract->win, fract->img->img_ptr, 0, 0);
-	mlx_string_put(fract->mlx, fract->win, 10, 10, 0xFFFFFF, "Max iteration: ");
-	mlx_string_put(fract->mlx, fract->win, 160, 10, 0xFFFFFF,
+	mlx_string_put(fract->mlx, fract->win, 10, 10, 0xFFFFFF, "Zoom: Mouse Wheel");
+	mlx_string_put(fract->mlx, fract->win, 10, 40, 0xFFFFFF, "Move: < ^ > v");
+	mlx_string_put(fract->mlx, fract->win, 10, 70, 0xFFFFFF, "Reset: R");
+	mlx_string_put(fract->mlx, fract->win, 10, 100, 0xFFFFFF, "Exit: ESC");
+	mlx_string_put(fract->mlx, fract->win, WIN_WIDTH - 135, WIN_HEIGHT - 30, 0xFFFFFF, "Iteration: ");
+	mlx_string_put(fract->mlx, fract->win, WIN_WIDTH - 30, WIN_HEIGHT - 30, 0xFFFFFF,
 			ft_itoa(fract->max_iteration));
 	if (ft_strcmp(fract->name, "julia") == 0)
 	{
 		if (fract->params->mouse_disabled == 1)
 			mlx_string_put(fract->mlx, fract->win, 10, WIN_HEIGHT - 30,
-					0xFFFFFF, "Mouse move: OFF");
+					0xFFFFFF, "Mouse move: OFF (M)");
 		if (fract->params->mouse_disabled == 0)
 			mlx_string_put(fract->mlx, fract->win, 10, WIN_HEIGHT - 30,
-					0xFFFFFF, "Mouse move: ON");
+					0xFFFFFF, "Mouse move: ON (M)");
 	}
 }
