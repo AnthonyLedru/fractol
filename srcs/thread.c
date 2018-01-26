@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/15 13:03:19 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 14:27:17 by aledru           ###   ########.fr       */
+/*   Created: 2018/01/26 15:23:16 by aledru            #+#    #+#             */
+/*   Updated: 2018/01/26 18:11:32 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	malloc_error(void)
+t_thread_p		*create_thread_p(void)
 {
-	ft_putstr_fd("error: Malloc failed\n", 2);
-	exit(EXIT_FAILURE);
-}
+	t_thread_p	*thread_p;
 
-void	arg_error(void)
-{
-	ft_putstr_fd("Usage: <name> [mandelbrot/julia/other]\n", 2);
-	exit(EXIT_FAILURE);
-}
-
-void	thread_error(char *error)
-{
-	perror(error);
-	exit(EXIT_FAILURE);
+	if (!(thread_p = (t_thread_p*)ft_memalloc(sizeof(t_thread_p))))
+		malloc_error();
+	thread_p->params = create_params(thread_p);
+	return (thread_p);
 }

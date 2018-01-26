@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 12:39:14 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 18:24:21 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ typedef struct	s_point
 
 typedef struct	s_point_double
 {
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 }				t_point_double;
 
 typedef struct	s_complex
 {
-	float			r;
-	float			i;
+	double			r;
+	double			i;
 }				t_complex;
 
 typedef struct	s_color
@@ -77,14 +77,17 @@ typedef struct	s_color
 	int b;
 }				t_color;
 
-typedef	struct	s_params
+typedef struct	s_params
 {
-	struct s_point_double	*min;
 	struct s_complex		*z;
-	struct s_complex		*c;
-	float					zoom;
-	int						mouse_disabled;
+	t_point					*p;
 }				t_params;
+
+typedef struct	s_thread_p
+{
+	pthread_t				th;
+	struct	s_params		*params;
+}				t_thread_p;
 
 typedef struct	s_fractol
 {
@@ -93,15 +96,37 @@ typedef struct	s_fractol
 	struct s_img			*img;
 	int						max_iteration;
 	char					*name;
-	struct s_params			*params;
+	int						mouse_disabled;
+	double					zoom;
+	struct s_complex		*c;
+	struct s_point_double	*min;
+	struct s_thread_p		*t1;
+	struct s_thread_p		*t2;
+	struct s_thread_p		*t3;
+	struct s_thread_p		*t4;
 }				t_fractol;
+
 
 /*
 ** -------------------------------- Fractol ------------------------------------
 */
 
 t_fractol		*create_fractol(void *mlx, void *win, char *name, t_img *img);
-void			draw_fractal(t_fractol *fract);
+void			draw_fractal(void *fract);
+void			reset_fractal(t_fractol *fract);
+
+/*
+** -------------------------------- Thread_p -----------------------------------
+*/
+
+t_thread_p		*create_thread_p(void);
+void			set_params_threads(t_fractol *fract);
+
+/*
+** -------------------------------- Params -------------------------------------
+*/
+
+t_params		*create_params(t_thread_p *thread);
 
 /*
 ** ------------------------------- Mandelbrot ----------------------------------
@@ -122,35 +147,28 @@ void			julia_draw(t_fractol *fract);
 void			burningship_draw(t_fractol *fract);
 
 /*
-** -------------------------------- Params -------------------------------------
-*/
-
-t_params		*create_params(t_fractol *fract);
-void			set_params(t_params *params, t_fractol *fract);
-
-/*
 ** -------------------------------- Point --------------------------------------
 */
 
 t_point			*create_point(int x, int y);
-t_point_double	*create_point_d(float x, float y);
+t_point_double	*create_point_d(double x, double y);
 t_point			*copy_point(t_point *point);
 void			set_point(t_point *point, int x, int y);
-void			set_point_d(t_point_double *point, float x, float y);
+void			set_point_d(t_point_double *point, double x, double y);
 
 /*
 ** ------------------------------- Complex -------------------------------------
 */
 
-t_complex		*create_complex(float r, float i);
-void			set_complex(t_complex *complex, float r, float i);
+t_complex		*create_complex(double r, double i);
+void			set_complex(t_complex *complex, double r, double i);
 
 /*
 ** --------------------------------- Img ---------------------------------------
 */
 
 t_img			*create_img(void *img);
-void			put_pixel(int x, int y, t_fractol *fract, float i);
+void			put_pixel(int x, int y, t_fractol *fract, double i);
 void			display_image(t_fractol *fract);
 
 /*
@@ -183,6 +201,8 @@ int				mlx_move(int x, int y, t_fractol *fract);
 ** -------------------------------- Error --------------------------------------
 */
 
-void			malloc_error();
-void			arg_error();
+void			malloc_error(void);
+void			arg_error(void);
+void			thread_error(char *error);
+
 #endif

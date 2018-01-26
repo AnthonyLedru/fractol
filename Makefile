@@ -37,6 +37,7 @@ SOURCES := \
 		complex.c \
 		color.c \
 		params.c \
+		thread.c \
 
 
 

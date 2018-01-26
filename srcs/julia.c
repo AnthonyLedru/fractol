@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:18:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/25 14:00:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/26 18:48:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,37 @@ static void		julia_calc(t_complex *z, t_complex *c, double *i)
 	*i = *i + 1.0;
 }
 
-void			julia_draw(t_fractol *fract)
+void			*julia_draw2(void *fracto)
 {
 	double		i;
+	t_fractol	*fract;
 	t_params	*params;
-	t_point		*p;
 
-	p = create_point(0, 0);
-	params = fract->params;
-	while (++p->x < WIN_WIDTH)
+	fract = (t_fractol*)fracto;
+	params = fract->t1->params;
+	while (++params->p->x < WIN_WIDTH)
 	{
-		p->y = 0;
-		while (++p->y < WIN_HEIGHT)
+		params->p->y = 0;
+		while (++params->p->y < WIN_HEIGHT)
 		{
-			i = 0;
-			set_complex(params->z, (p->x / params->zoom) + params->min->x,
-							(p->y / params->zoom) + params->min->y);
-			julia_calc(params->z, params->c, &i);
+			i = 0.0;
+			set_complex(params->z, (params->p->x / fract->zoom) + fract->min->x,
+							(params->p->y / fract->zoom) + fract->min->y);
+			julia_calc(params->z, fract->c, &i);
 			while (sqrt(params->z->r * params->z->r + params->z->i *
 							params->z->i) < 4 && i < fract->max_iteration)
-				julia_calc(params->z, params->c, &i);
+				julia_calc(params->z, fract->c, &i);
 			if (i == fract->max_iteration)
-				put_pixel(p->x, p->y, fract, 0);
+				put_pixel(params->p->x, params->p->y, fract, 0);
 			else
-				put_pixel(p->x, p->y, fract, i);
+				put_pixel(params->p->x, params->p->y, fract, i);
 		}
 	}
+	return (NULL);
+}
+
+void			julia_draw(t_fractol *fract)
+{
+	set_point(fract->t1->params->p, 0, 0);
+	julia_draw2(fract);
 }
