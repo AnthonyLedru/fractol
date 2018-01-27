@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 22:19:47 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:39:57 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,71 +22,65 @@ static void		mandelbrot_calc(t_complex *z, t_complex *c, double *i)
 	*i = *i + 1.0;
 }
 
-void			*mandelbrot_draw(void *fract_thread)
+static void		set_default_params(t_params *p, t_fract_thread *f_t)
+{
+	p->i = 0.0;
+	set_complex(p->c, (p->p->x / f_t->fract->zoom) + f_t->fract->min->x,
+					(p->p->y / f_t->fract->zoom) + f_t->fract->min->y);
+	set_complex(p->z, 0, 0);
+}
+
+static void			*mandelbrot_draw(void *fract_thread)
 {
 	t_fract_thread	*f_t;
-	t_params		*params;
-	t_fractol		*fract;
-	int				thread_x;
+	t_params		*p;
 
 	f_t = (t_fract_thread*)fract_thread;
-	fract = (t_fractol*)f_t->fract;
-	params = f_t->thread->params;
-	if (f_t->thread->id == 1)
-		thread_x = 0;
-	if (f_t->thread->id == 2)
-		thread_x = 200;
-	if (f_t->thread->id == 3)
-		thread_x = 400;
-	if (f_t->thread->id == 4)
-		thread_x = 600;
-	while (++params->p->x <= fract->width + thread_x)
+	p = f_t->thread->params;
+	while (++p->p->x <= f_t->fract->thread_width + f_t->coord->x)
 	{
-		params->p->y = 0;
-		while (++params->p->y < fract->height)
+		p->p->y = f_t->coord->y;
+		while (++p->p->y <= f_t->fract->thread_height + f_t->coord->y)
 		{
-			params->i = 0.0;
-			set_complex(params->c, (params->p->x / fract->zoom) + fract->min->x,
-							(params->p->y / fract->zoom) + fract->min->y);
-			set_complex(params->z, 0, 0);
-			mandelbrot_calc(params->z, params->c, &(params->i));
-			while (sqrt(params->z->r * params->z->r + params->z->i *
-							params->z->i) < 4 && params->i < fract->max_iteration)
-				mandelbrot_calc(params->z, params->c, &(params->i));
-			if (params->i == fract->max_iteration)
-				put_pixel(params->p->x, params->p->y, f_t, 0);
+			set_default_params(p, f_t);
+			while (sqrt(p->z->r * p->z->r + p->z->i * p->z->i) < 4 &&
+					p->i < f_t->fract->max_iteration)
+				mandelbrot_calc(p->z, p->c, &(p->i));
+			if (p->i == f_t->fract->max_iteration)
+				put_pixel(p->p->x, p->p->y, f_t, 0);
 			else
-				put_pixel(params->p->x, params->p->y, f_t, params->i);
+				put_pixel(p->p->x, p->p->y, f_t, p->i);
 		}
 	}
+	free_fract_thread(fract_thread);
 	pthread_exit(NULL);
-	return (NULL);
 }
 
 void			mandelbrot_draw_setup(t_fractol *fract)
 {
-	t_fract_thread		*fract_thread;
-	t_fract_thread		*fract_thread2;
-	t_fract_thread		*fract_thread3;
-	t_fract_thread		*fract_thread4;
+	int		th_id;
+	t_point	*th;
+	t_point	*p;
 
-	set_point(fract->t1->params->p, 0, 0);
-	fract_thread = create_fract_thread(fract->t1, fract);
-	pthread_create(&(fract->t1->th), NULL, mandelbrot_draw, fract_thread);
-
-	set_point(fract->t2->params->p, 200, 0);
-	fract_thread2 = create_fract_thread(fract->t2, fract);
-	pthread_create(&(fract->t2->th), NULL, mandelbrot_draw, fract_thread2);
-
-	set_point(fract->t3->params->p, 400, 0);
-	fract_thread3 = create_fract_thread(fract->t3, fract);
-	pthread_create(&(fract->t3->th), NULL, mandelbrot_draw, fract_thread3);
-
-	set_point(fract->t4->params->p, 600, 0);
-	fract_thread4 = create_fract_thread(fract->t4, fract);
-	pthread_create(&(fract->t4->th), NULL, mandelbrot_draw, fract_thread4);
-	pthread_join(fract->t1->th, NULL);
-	pthread_join(fract->t2->th, NULL);
-	pthread_join(fract->t3->th, NULL);
-	pthread_join(fract->t4->th, NULL);
+	th = create_point(-1, -1);
+	p = create_point(-1, -1);
+	th_id = -1;
+	while (++th->x < sqrt(NB_THREAD))
+	{
+		p->x = -1;
+		th->y = -1;
+		while (++th->y < sqrt(NB_THREAD) && ++th_id >= 0)
+		{
+			set_point(fract->threads[th_id]->params->p, p->x, p->y);
+			pthread_create(&(fract->threads[th_id]->th), NULL, mandelbrot_draw,
+								create_fract_thread(fract->threads[th_id],
+										fract, p->x, p->y));
+			p->x += fract->thread_width;
+		}
+		p->y += fract->thread_height;
+	}
+	while (--th_id >= 0)
+		pthread_join(fract->threads[th_id]->th, NULL);
+	ft_memdel((void*)&th);
+	ft_memdel((void*)&p);
 }

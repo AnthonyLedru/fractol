@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:13:38 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 22:01:52 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:23:16 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int		mlx_zoom(int button, int x, int y, t_fractol *fract)
 							y / fract->zoom + fract->min->y);
 		if (button == MOUSE_DOWN)
 		{
-			fract->zoom *= 0.8;
+			fract->zoom *= 0.9;
 			mlx_key_pressed(KEY_MINUS, fract);
 		}
 		if (button == MOUSE_UP)
 		{
-			fract->zoom *= 1.2;
+			fract->zoom *= 1.1;
 			mlx_key_pressed(KEY_PLUS, fract);
 		}
 		fract->min->x = tmp->x - (WIN_WIDTH / fract->zoom) / 2;
@@ -41,15 +41,17 @@ int		mlx_zoom(int button, int x, int y, t_fractol *fract)
 
 int		mlx_move(int x, int y, t_fractol *fract)
 {
-	(void)x;
-	(void)y;
-	/*if (ft_strcmp(fract->name, "julia") == 0 && fract->mouse_disabled == 0)
+	int	i;
+
+	if (ft_strcmp(fract->name, "julia") == 0 && fract->mouse_disabled == 0)
 	{
 		if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
 			return (0);
-		fract->c->r = (double)x * -0.002205;
-		fract->c->i = (double)y * 0.00081;
-	}*/
-	draw_fractal(fract);
+		i = -1;
+		while (++i < NB_THREAD)
+			set_complex(fract->threads[i]->params->c, (double)x * -0.002205,
+			(double)y * 0.00081);
+		draw_fractal(fract);
+	}
 	return (0);
 }

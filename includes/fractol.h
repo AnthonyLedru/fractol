@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 22:18:58 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:39:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define WIN_HEIGHT		600
 # define WIN_WIDTH		800
+# define NB_THREAD		100
 
 # define KEY_R			15
 # define KEY_M			46
@@ -102,26 +103,23 @@ typedef struct	s_fractol
 	int						mouse_disabled;
 	double					zoom;
 	struct s_point_double	*min;
-	struct s_thread_p		*t1;
-	struct s_thread_p		*t2;
-	struct s_thread_p		*t3;
-	struct s_thread_p		*t4;
-	int						width;
-	int						height;
+	struct s_thread_p		*threads[NB_THREAD];
+	int						thread_width;
+	int						thread_height;
 }				t_fractol;
 
 typedef struct	s_fract_thread
 {
 	struct s_fractol		*fract;
 	struct s_thread_p		*thread;
-	int						start_x;
+	t_point					*coord;
 }				t_fract_thread;
 /*
 ** -------------------------------- Fractol ------------------------------------
 */
 
 t_fractol		*create_fractol(void *mlx, void *win, char *name, t_img *img);
-void			draw_fractal(void *fract);
+void			draw_fractal(t_fractol *fract);
 void			reset_fractal(t_fractol *fract);
 
 /*
@@ -129,19 +127,21 @@ void			reset_fractal(t_fractol *fract);
 */
 
 t_thread_p		*create_thread_p(int id, t_fractol *fract);
-void			set_params_threads(t_fractol *fract);
+void			reset_threads_params(t_fractol *fract);
 
 /*
 ** ------------------------------ Fract thread ---------------------------------
 */
 
-t_fract_thread	*create_fract_thread(t_thread_p *thread, t_fractol *fract);
+t_fract_thread	*create_fract_thread(t_thread_p *thread, t_fractol *fract,
+										int x, int y);
+void			free_fract_thread(t_fract_thread *f_t);
 
 /*
 ** -------------------------------- Params -------------------------------------
 */
 
-t_params		*create_params(t_thread_p *thread, t_fractol *fract);
+t_params		*create_params(t_fractol *fract);
 
 /*
 ** ------------------------------- Mandelbrot ----------------------------------
@@ -153,13 +153,13 @@ void			mandelbrot_draw_setup(t_fractol *fract);
 ** --------------------------------- Julia -------------------------------------
 */
 
-void			julia_draw(t_fractol *fract);
+void			julia_draw_setup(t_fractol *fract);
 
 /*
 ** ------------------------------ BurningShip ----------------------------------
 */
 
-void			burningship_draw(t_fractol *fract);
+void			burningship_draw_setup(t_fractol *fract);
 
 /*
 ** -------------------------------- Point --------------------------------------

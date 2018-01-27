@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:14:01 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 22:31:25 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:12:08 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	change_iteration(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_PLUS)
-		fract->max_iteration += 5;
+		fract->max_iteration += 3;
 	if (keycode == KEY_MINUS)
 		if (fract->max_iteration > 10)
-			fract->max_iteration -= 5;
+			fract->max_iteration -= 3;
 	draw_fractal(fract);
 }
 
