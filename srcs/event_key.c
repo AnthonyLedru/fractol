@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:14:01 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/27 19:12:08 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/28 20:43:43 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	translate(int keycode, t_fractol *fract)
 		fract->min->x -= 1 / fract->zoom * 10;
 	if (keycode == KEY_RIGHT)
 		fract->min->x += 1 / fract->zoom * 10;
+	printf("%f\n", fract->min->x);
+	printf("%f\n", fract->min->y);
 }
 
 int		mlx_key_pressed(int keycode, t_fractol *fract)
