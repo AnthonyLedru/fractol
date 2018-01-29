@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/29 14:53:54 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 15:39:06 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct	s_thread_p
 {
 	pthread_t				th;
 	int						id;
-	struct	s_params		*params;
+	struct s_params			*params;
 }				t_thread_p;
 
 typedef struct	s_fractol
