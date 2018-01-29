@@ -24,21 +24,20 @@ Made with the minilibx
 ## Controls
 
 
-Key|Function
+Key|Action
 :-:|:-:
-<kbd>1</kbd>|Red
-<kbd>2</kbd>|Green
-<kbd>3</kbd>|Blue
-<kbd>4</kbd>|Yellow
-<kbd>5</kbd>|Gray
-<kbd>6</kbd>|Cyan
-<kbd>7</kbd>|Purple
-<kbd>ESC</kbd>|Quit
+<kbd>1</kbd>|Color red
+<kbd>2</kbd>|Color green
+<kbd>3</kbd>|Color blue
+<kbd>4</kbd>|Color yellow
+<kbd>5</kbd>|Color gray
+<kbd>6</kbd>|Color cyan
+<kbd>7</kbd>|Color purple
 <kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Movements
 <kbd>Left click</kbd><br><kbd>Scroll up</kbd><br><kbd>Num +</kbd>
 <kbd>Right click</kbd><br><kbd>Scroll down</kbd><br><kbd>Num -</kbd>
-<kbd>Num /</kbd><br><kbd>Num *</kbd>|Iteration +10<br>Iteration -10
-<kbd>L</kbd>|J_Locker
+<kbd>+</kbd><br><kbd>Num -</kbd>|Change iteration
+<kbd>ESC</kbd>|Quit
 
 Reset fractal: R
 Move: < ^ > v
