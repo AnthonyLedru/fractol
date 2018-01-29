@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:18:20 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/27 19:40:00 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 12:40:46 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		set_default_params(t_params *p, t_fract_thread *f_t)
 					(p->p->y / f_t->fract->zoom) + f_t->fract->min->y);
 }
 
-static void			*julia_draw(void *fract_thread)
+static void		*julia_draw(void *fract_thread)
 {
 	t_fract_thread	*f_t;
 	t_params		*p;
