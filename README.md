@@ -25,7 +25,7 @@ Made with the minilibx
 
 
 Key|Action
-:----:|:-----:
+:-:|:-:
 <kbd>1</kbd>|Change the color to red
 <kbd>2</kbd>|Change the color to green
 <kbd>3</kbd>|Change the color to blue
@@ -33,8 +33,10 @@ Key|Action
 <kbd>5</kbd>|Change the color to gray
 <kbd>6</kbd>|Change the color to cyan
 <kbd>7</kbd>|Change the color to purple
+<kbd>Mouse Wheel</kbd>|Zoom on fractal
 <kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Move the fractal (X, Y)
 <kbd>+</kbd><br><kbd>Num -</kbd>|Change the iteration rate
+<kbd>M</kbd>|Disable the mouse movement on Julia
 <kbd>ESC</kbd>|Quit the program
 
 Reset fractal: R
