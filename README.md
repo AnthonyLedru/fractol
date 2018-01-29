@@ -23,9 +23,8 @@ Made with the minilibx
 
 ## Controls
 
-
 Key|Action
-:-:|:-:
+:-:|:-::::
 <kbd>1</kbd>|Change the color to red
 <kbd>2</kbd>|Change the color to green
 <kbd>3</kbd>|Change the color to blue
@@ -38,13 +37,6 @@ Key|Action
 <kbd>+</kbd> <kbd>-</kbd>|Change the iteration rate
 <kbd>M</kbd>|Disable the mouse movement on Julia
 <kbd>ESC</kbd>|Quit the program
-
-Reset fractal: R
-Move: < ^ > v
-Zoom: Mouse Wheel
-Change Color: 1, 2, 3, 4, 5, 6, 7
-Disable Mouse (Julia): M
-Change iteration: + OR - (PAD)
 
 ## Compilation
 
