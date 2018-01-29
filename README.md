@@ -26,10 +26,13 @@ Made with the minilibx
 
 Key|Function
 :-:|:-:
-<kbd>1</kbd>|Selection
-<kbd>2</kbd>|Selection
-<kbd>3</kbd>|Selection
-<kbd>4</kbd>|Selection
+<kbd>1</kbd>|Red
+<kbd>2</kbd>|Green
+<kbd>3</kbd>|Blue
+<kbd>4</kbd>|Yellow
+<kbd>5</kbd>|Gray
+<kbd>6</kbd>|Cyan
+<kbd>7</kbd>|Purple
 <kbd>ESC</kbd>|Quit
 <kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Movements
 <kbd>Left click</kbd><br><kbd>Scroll up</kbd><br><kbd>Num +</kbd>
