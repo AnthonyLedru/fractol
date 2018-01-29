@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 17:46:26 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/29 15:18:04 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 15:35:34 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void		*mandelbrot_draw(void *fract_thread)
 
 	f_t = (t_fract_thread*)fract_thread;
 	p = f_t->thread->params;
-	while (++p->p->x < f_t->fract->thread_width + f_t->coord->x)
+	while (++p->p->x <= f_t->fract->thread_width + f_t->coord->x)
 	{
 		p->p->y = f_t->coord->y;
-		while (++p->p->y < f_t->fract->thread_height + f_t->coord->y)
+		while (++p->p->y <= f_t->fract->thread_height + f_t->coord->y)
 		{
 			set_default_params(p, f_t);
 			while (sqrt(p->z->r * p->z->r + p->z->i * p->z->i) < 4 &&
