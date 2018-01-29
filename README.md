@@ -6,7 +6,11 @@ Made with the minilibx
 
 ## Screenshots
 
-![alt text](https://github.com/AnthonyLedru/fdf/blob/master/screenshots/42_fdf.png)
+![alt text](https://github.com/AnthonyLedru/fractol/blob/master/screenshots/julia.png)
+
+![alt text](https://github.com/AnthonyLedru/fractol/blob/master/screenshots/mandelbrot.png)
+
+![alt text](https://github.com/AnthonyLedru/fractol/blob/master/screenshots/burningship.png)
 
 ## Features
 
