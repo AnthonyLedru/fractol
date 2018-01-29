@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/26 22:19:19 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 15:02:19 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ t_img	*create_img(void *img)
 	return (s_img);
 }
 
+t_color	*get_selected_color(t_fractol *fract, int i)
+{
+	if (fract->selected_color == 1)
+		return (create_color_rgb(i, 0, 0));
+	if (fract->selected_color == 2)
+		return (create_color_rgb(0, i, 0));
+	if (fract->selected_color == 3)
+		return (create_color_rgb(0, 0, i));
+	if (fract->selected_color == 4)
+		return (create_color_rgb(i, i, 0));
+	if (fract->selected_color == 5)
+		return (create_color_rgb(i, i, i));
+	if (fract->selected_color == 6)
+		return (create_color_rgb(0, i, i));
+	if (fract->selected_color == 7)
+		return (create_color_rgb(i, 0, i));
+	return (create_color(0));
+}
+
 void	put_pixel(int x, int y, t_fract_thread *f_t, double i)
 {
 	t_color		*color;
@@ -34,12 +53,7 @@ void	put_pixel(int x, int y, t_fract_thread *f_t, double i)
 	{
 		i = i - log(log(sqrt(p->z->r * p->z->r + p->z->i * p->z->i))) / log(2);
 		i = (767 * i) / f_t->fract->max_iteration;
-		if (ft_strcmp(f_t->fract->name, "mandelbrot") == 0)
-			color = create_color_rgb(i, i, i);
-		if (ft_strcmp(f_t->fract->name, "julia") == 0)
-			color = create_color_rgb(0, i, 0);
-		if (ft_strcmp(f_t->fract->name, "burningship") == 0)
-			color = create_color_rgb(0, i, i);
+		color = get_selected_color(f_t->fract, i);
 	}
 	else
 		color = create_color(0);

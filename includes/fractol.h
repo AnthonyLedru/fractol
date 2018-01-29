@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:16:11 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/29 12:36:20 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 14:53:54 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define NB_THREAD		100
 
 # define KEY_R			15
+# define KEY_1			18
+# define KEY_2			19
+# define KEY_3			20
+# define KEY_4			21
+# define KEY_5			23
+# define KEY_6			22
+# define KEY_7			26
 # define KEY_M			46
 # define KEY_ESCAPE		53
 # define KEY_PLUS		69
@@ -106,6 +113,7 @@ typedef struct	s_fractol
 	struct s_thread_p		*threads[NB_THREAD];
 	int						thread_width;
 	int						thread_height;
+	int						selected_color;
 }				t_fractol;
 
 typedef struct	s_fract_thread

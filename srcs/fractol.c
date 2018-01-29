@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 13:22:57 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/28 23:07:50 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 14:49:45 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		reset_fractal(t_fractol *fract)
 {
 	reset_threads_params(fract);
 	fract->zoom = 250;
-	fract->max_iteration = 30;
+	fract->max_iteration = 50;
 	if (ft_strcmp(fract->name, "mandelbrot") == 0)
 		set_point_d(fract->min, -2.1, -1.2);
 	if (ft_strcmp(fract->name, "julia") == 0)
@@ -28,7 +28,7 @@ void		reset_fractal(t_fractol *fract)
 void		init_fract_param(t_fractol *fract)
 {
 	fract->zoom = 250;
-	fract->max_iteration = 30;
+	fract->max_iteration = 50;
 	if (ft_strcmp(fract->name, "mandelbrot") == 0)
 		fract->min = create_point_d(-2.1, -1.2);
 	if (ft_strcmp(fract->name, "julia") == 0)
@@ -67,5 +67,6 @@ t_fractol	*create_fractol(void *mlx, void *win, char *name, t_img *img)
 		fract->threads[i] = create_thread_p(i, fract);
 	fract->thread_width = WIN_WIDTH / sqrt(NB_THREAD);
 	fract->thread_height = WIN_HEIGHT / sqrt(NB_THREAD);
+	fract->selected_color = 1;
 	return (fract);
 }

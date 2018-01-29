@@ -6,7 +6,7 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:14:01 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/28 22:45:29 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 14:54:35 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,30 @@ void	translate(int keycode, t_fractol *fract)
 		fract->min->x += 1 / fract->zoom * 10;
 }
 
+int		get_color_selected(int keycode, t_fractol *fract)
+{
+	if (keycode == KEY_1)
+		return (1);
+	if (keycode == KEY_2)
+		return (2);
+	if (keycode == KEY_3)
+		return (3);
+	if (keycode == KEY_4)
+		return (4);
+	if (keycode == KEY_5)
+		return (5);
+	if (keycode == KEY_6)
+		return (6);
+	if (keycode == KEY_7)
+		return (7);
+	return (fract->selected_color);
+}
+
 int		mlx_key_pressed(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_ESCAPE)
 		exit(EXIT_SUCCESS);
+	fract->selected_color = get_color_selected(keycode, fract);
 	if (keycode == KEY_R)
 		reset_fractal(fract);
 	if (keycode == KEY_M)
