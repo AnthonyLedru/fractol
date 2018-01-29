@@ -26,18 +26,16 @@ Made with the minilibx
 
 Key|Action
 :-:|:-:
-<kbd>1</kbd>|Color red
-<kbd>2</kbd>|Color green
-<kbd>3</kbd>|Color blue
-<kbd>4</kbd>|Color yellow
-<kbd>5</kbd>|Color gray
-<kbd>6</kbd>|Color cyan
-<kbd>7</kbd>|Color purple
-<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Movements
-<kbd>Left click</kbd><br><kbd>Scroll up</kbd><br><kbd>Num +</kbd>
-<kbd>Right click</kbd><br><kbd>Scroll down</kbd><br><kbd>Num -</kbd>
-<kbd>+</kbd><br><kbd>Num -</kbd>|Change iteration
-<kbd>ESC</kbd>|Quit
+<kbd>1</kbd>|Change the color to red
+<kbd>2</kbd>|Change the color to green
+<kbd>3</kbd>|Change the color to blue
+<kbd>4</kbd>|Change the color to yellow
+<kbd>5</kbd>|Change the color to gray
+<kbd>6</kbd>|Change the color to cyan
+<kbd>7</kbd>|Change the color to purple
+<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Move the fractal (X, Y)
+<kbd>+</kbd><br><kbd>Num -</kbd>|Change the iteration rate
+<kbd>ESC</kbd>|Quit the program
 
 Reset fractal: R
 Move: < ^ > v
