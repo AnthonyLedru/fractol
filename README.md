@@ -24,7 +24,7 @@ Made with the minilibx
 ## Controls
 
 Key|Action|
-:-:|:-------------------------------------------------:
+:-:|:-:
 <kbd>1</kbd>|Change the color to red
 <kbd>2</kbd>|Change the color to green
 <kbd>3</kbd>|Change the color to blue
