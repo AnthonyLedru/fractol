@@ -25,7 +25,7 @@ Made with the minilibx
 
 
 Key|Function|Comment
-:-:|:-:|:--
+:-:|:--
 <kbd>1</kbd>|Selection|Mandelbrot.
 <kbd>2</kbd>|Selection|Julia.
 <kbd>3</kbd>|Selection|Burning Ship.
