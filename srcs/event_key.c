@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 14:14:01 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/29 14:54:35 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 18:24:40 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	change_iteration(int keycode, t_fractol *fract)
+static void	change_iteration(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_PLUS)
 		fract->max_iteration += 3;
@@ -22,7 +22,7 @@ void	change_iteration(int keycode, t_fractol *fract)
 	draw_fractal(fract);
 }
 
-void	translate(int keycode, t_fractol *fract)
+static void	translate(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_UP)
 		fract->min->y -= 1 / fract->zoom * 10;
@@ -34,7 +34,7 @@ void	translate(int keycode, t_fractol *fract)
 		fract->min->x += 1 / fract->zoom * 10;
 }
 
-int		get_color_selected(int keycode, t_fractol *fract)
+static int	get_color_selected(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_1)
 		return (1);
@@ -53,7 +53,7 @@ int		get_color_selected(int keycode, t_fractol *fract)
 	return (fract->selected_color);
 }
 
-int		mlx_key_pressed(int keycode, t_fractol *fract)
+int			mlx_key_pressed(int keycode, t_fractol *fract)
 {
 	if (keycode == KEY_ESCAPE)
 		exit(EXIT_SUCCESS);

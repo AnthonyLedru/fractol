@@ -6,25 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 13:27:32 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/29 15:02:19 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 18:30:13 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_img	*create_img(void *img)
-{
-	t_img *s_img;
-
-	if (!(s_img = (t_img*)ft_memalloc(sizeof(t_img))))
-		malloc_error();
-	s_img->img_ptr = img;
-	s_img->data = (int *)mlx_get_data_addr(s_img->img_ptr, &s_img->bpp,
-			&s_img->size_line, &s_img->endian);
-	return (s_img);
-}
-
-t_color	*get_selected_color(t_fractol *fract, int i)
+static t_color	*get_selected_color(t_fractol *fract, int i)
 {
 	if (fract->selected_color == 1)
 		return (create_color_rgb(i, 0, 0));
@@ -43,7 +31,19 @@ t_color	*get_selected_color(t_fractol *fract, int i)
 	return (create_color(0));
 }
 
-void	put_pixel(int x, int y, t_fract_thread *f_t, double i)
+t_img			*create_img(void *img)
+{
+	t_img *s_img;
+
+	if (!(s_img = (t_img*)ft_memalloc(sizeof(t_img))))
+		malloc_error();
+	s_img->img_ptr = img;
+	s_img->data = (int *)mlx_get_data_addr(s_img->img_ptr, &s_img->bpp,
+			&s_img->size_line, &s_img->endian);
+	return (s_img);
+}
+
+void			put_pixel(int x, int y, t_fract_thread *f_t, double i)
 {
 	t_color		*color;
 	t_params	*p;
@@ -62,7 +62,7 @@ void	put_pixel(int x, int y, t_fract_thread *f_t, double i)
 	ft_memdel((void*)&color);
 }
 
-void	display_image(t_fractol *fract)
+void			display_image(t_fractol *fract)
 {
 	char	*iteration;
 

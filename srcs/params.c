@@ -6,13 +6,13 @@
 /*   By: aledru <aledru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 17:00:05 by aledru            #+#    #+#             */
-/*   Updated: 2018/01/27 19:16:31 by aledru           ###   ########.fr       */
+/*   Updated: 2018/01/29 18:28:13 by aledru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		reset_params(t_params *params, t_fractol *fract)
+static void	reset_params(t_params *params, t_fractol *fract)
 {
 	set_complex(params->z, 0.0, 0.0);
 	if (ft_strcmp(fract->name, "mandelbrot") == 0)
