@@ -24,18 +24,18 @@ Made with the minilibx
 ## Controls
 
 
-Key|Function|Comment
-:-:|:--
-<kbd>1</kbd>|Selection|Mandelbrot.
-<kbd>2</kbd>|Selection|Julia.
-<kbd>3</kbd>|Selection|Burning Ship.
-<kbd>4</kbd>|Selection|Tricorn.
-<kbd>ESC</kbd>|Quit|Quit fractol.
-<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Movements|Move the fractal.
-<kbd>Left click</kbd><br><kbd>Scroll up</kbd><br><kbd>Num +</kbd>|<br>Zoom +|<br>Zoom in
-<kbd>Right click</kbd><br><kbd>Scroll down</kbd><br><kbd>Num -</kbd>|<br>Zoom -|<br>Zoom out
-<kbd>Num /</kbd><br><kbd>Num *</kbd>|Iteration +10<br>Iteration -10|Add +10 iteration<br>Substract -10 iteration
-<kbd>L</kbd>|J_Locker|Lock Julia generation with the mouse
+Key|Function
+:-:|:-:
+<kbd>1</kbd>|Selection
+<kbd>2</kbd>|Selection
+<kbd>3</kbd>|Selection
+<kbd>4</kbd>|Selection
+<kbd>ESC</kbd>|Quit
+<kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Movements
+<kbd>Left click</kbd><br><kbd>Scroll up</kbd><br><kbd>Num +</kbd>
+<kbd>Right click</kbd><br><kbd>Scroll down</kbd><br><kbd>Num -</kbd>
+<kbd>Num /</kbd><br><kbd>Num *</kbd>|Iteration +10<br>Iteration -10
+<kbd>L</kbd>|J_Locker
 
 Reset fractal: R
 Move: < ^ > v
