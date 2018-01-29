@@ -35,7 +35,7 @@ Key|Action
 <kbd>7</kbd>|Change the color to purple
 <kbd>Mouse Wheel</kbd>|Zoom on fractal
 <kbd>^</kbd><br><kbd><</kbd><kbd>v</kbd><kbd>></kbd>|Move the fractal (X, Y)
-<kbd>+</kbd> / <kbd>-</kbd>|Change the iteration rate
+<kbd>+</kbd> <kbd>-</kbd>|Change the iteration rate
 <kbd>M</kbd>|Disable the mouse movement on Julia
 <kbd>ESC</kbd>|Quit the program
 
