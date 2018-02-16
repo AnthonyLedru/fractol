@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/01/17 21:55:47 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/02/16 18:20:39 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,12 +52,9 @@ OK_COLOR     := \x1b[32;01m
 HEAD_COLOR   := \x1b[32;01m
 SILENT_COLOR := \x1b[30;01m
 
-all: header $(NAME)
+HEADER_PRINTED := NO
 
-header:
-	@printf "\n$(HEAD_COLOR)--------------------------------\n"
-	@printf "$(HEAD_COLOR)----------- Fractol ------------\n"
-	@printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@make -C libft/
@@ -68,18 +65,28 @@ $(NAME): $(OBJECTS)
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
 
 objs/%.o: %.c
+	@if [ "$(HEADER_PRINTED)" = "NO" ]; then \
+		printf "\n$(HEAD_COLOR)--------------------------------\n"; \
+		printf "$(HEAD_COLOR)----------- FRACTOL ------------\n"; \
+		printf "$(HEAD_COLOR)--------------------------------$(NO_COLOR)\n\n"; \
+		$(eval HEADER_PRINTED = YES) \
+	fi
 	@mkdir -p $(dir $@)
 	@$(CC) $(FLAGS) $(INCLUDE_FOLDERS) -c $< -o $@
 	@printf "$(notdir $<) "
 	@printf "$(OK_COLOR)✓$(NO_COLOR)\n"
 
 clean:
+	@make -C libft/ clean
+	@make -C minilibx_macos clean
 	@rm -rf $(OBJECTS_FOLDER)
 	@printf "$(SILENT_COLOR)$(NAME) : Objects removed$(NO_COLOR)\n"
 
-fclean: clean
+fclean:
 	@make -C libft/ fclean
-	@make -C minilibx_macos clean
+	@make -C minilibx_macos fclean
+	@rm -rf $(OBJECTS_FOLDER)
+	@printf "$(SILENT_COLOR)$(NAME) : Objects removed$(NO_COLOR)\n"
 	@rm -f $(NAME)
 	@printf "$(SILENT_COLOR)$(NAME) : Binary removed $(NO_COLOR)\n"
 
