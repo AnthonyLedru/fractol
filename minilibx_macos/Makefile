@@ -20,7 +20,7 @@ $(NOM):	$(OBJ)
 	@printf "\n$(SILENT_COLOR)Compiling Mlx...$(NO_COLOR)"
 	@ar rcs $(NOM) $(OBJ)
 	@ranlib $(NOM)
-	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n\n"
+	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)\n"
 
 %.o: %.c
 	@if [ "$(HEADER_PRINTED)" = "NO" ]; then \

@@ -6,7 +6,7 @@
 #    By: aledru <aledru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/09 16:42:45 by aledru            #+#    #+#              #
-#*   Updated: 2018/02/16 20:20:54 by aledru           ###   ########.fr       *#
+#*   Updated: 2018/02/16 20:24:33 by aledru           ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	@make -C libft/ -s
 	@make -C minilibx_macos/ -s
-	@printf "$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
+	@printf "\n$(SILENT_COLOR)Compiling $(NAME)...$(NO_COLOR)"
 	@$(CC) -o $(NAME) $(OBJECTS) $(FLAGS) libft/libft.a $(MLX) $(THREAD) \
 	minilibx_macos/libmlx.a
 	@printf " $(OK_COLOR)Done ✓$(NO_COLOR)"
