@@ -90,6 +90,8 @@ fclean:
 	@rm -f $(NAME)
 	@printf "$(SILENT_COLOR)$(NAME) : Binary removed $(NO_COLOR)\n"
 
-re: fclean all
+re: 
+	@make fclean
+	@make
 
 .PHONY: all clean fclean re header
