@@ -4,7 +4,7 @@ This project is about creating beautiful fractals
 
 Made with the minilibx
 
-This code complies with the 42 school norm: https://github.com/AnthonyLedru/norm/blob/master/norme.pdf
+This code complies with the 42 school norm: https://github.com/AnthonyLedru/fractol/blob/master/norm.pdf
 
 ## Screenshots
 
